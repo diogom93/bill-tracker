@@ -1,3 +1,7 @@
+# Bill tracker app
+
+This small project was created as an introduction to React. It consists of a small app to register bills per category and keep track of expenses.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
