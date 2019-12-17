@@ -10,10 +10,18 @@ import NavBar from './components/NavBar';
 
 function App() {
 	const [shouldShowAddCategory, setShouldShowAddCategory] = useState(true);
+	const [categories, setCategories] = useState([]);
+
+	const addCategory = category => {
+		const categoriesAux = [...categories, category];
+		setCategories(categoriesAux);
+		setShouldShowAddCategory(false);
+	}
+
 	return (
 		<div className="App">
 			{shouldShowAddCategory ? (
-				<AddCategory />
+				<AddCategory onSubmit={addCategory} />
 			) : (
 					<div>
 						<NavBar />
