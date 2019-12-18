@@ -66,8 +66,8 @@ const Chart = props => {
 
     return <div>
         <Bar data={data}
-            width="100"
-            height="150"
+            width={100}
+            height={550}
             options={{ maintainAspectRatio: false }} />
     </div>;
 }
