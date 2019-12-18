@@ -11,6 +11,7 @@ import NavBar from './components/NavBar';
 function App() {
 	const [shouldShowAddCategory, setShouldShowAddCategory] = useState(false);
 	const [shouldShowAddBill, setShouldShowAddBill] = useState(false);
+	const [activeCategory, setActiveCategory] = useState('');
 	const [categories, setCategories] = useState([]);
 	const [bills, setBills] = useState([]);
 
@@ -34,6 +35,15 @@ function App() {
 		billsAux.splice(index, 1);
 		setBills(billsAux);
 		localStorage.setItem('bills', JSON.stringify(billsAux));
+	}
+
+	const getActiveBills = () => {
+		return bills.filter(bill => activeCategory ? bill.category === activeCategory : true)
+			.sort((a, b) => new Date(a.date) < new Date(b.date) ? 1 : -1);
+	}
+
+	const filterCategory = category => {
+		setActiveCategory(category);
 	}
 
 	const showAddCategory = () => {
@@ -69,13 +79,13 @@ function App() {
 					<AddBill categories={categories} onSubmit={addBill} />
 					:
 					<div>
-						<NavBar categories={categories} addCategory={showAddCategory} />
+						<NavBar categories={categories} addCategory={showAddCategory} activeCategory={activeCategory} filterCategory={filterCategory} />
 						<div className="container flex">
 							<div className="w-1/2">
-								<BillsTable bills={bills} addBill={showAddBill} removeBill={removeBill} />
+								<BillsTable bills={getActiveBills()} addBill={showAddBill} removeBill={removeBill} />
 							</div>
 							<div className="w-1/2">
-								<Chart bills={bills} />
+								<Chart bills={getActiveBills()} />
 							</div>
 						</div>
 					</div>
