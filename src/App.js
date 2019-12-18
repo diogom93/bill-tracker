@@ -24,7 +24,7 @@ function App() {
 
 	const addBill = (date, category, amount) => {
 		const bill = { date, category, amount };
-		const billsAux = [...bills, bill];
+		const billsAux = [...bills, bill].sort((a, b) => new Date(a.date) < new Date(b.date) ? 1 : -1);
 		setBills(billsAux);
 		setShouldShowAddBill(false);
 		localStorage.setItem('bills', JSON.stringify(billsAux));
@@ -38,8 +38,7 @@ function App() {
 	}
 
 	const getActiveBills = () => {
-		return bills.filter(bill => activeCategory ? bill.category === activeCategory : true)
-			.sort((a, b) => new Date(a.date) < new Date(b.date) ? 1 : -1);
+		return bills.filter(bill => activeCategory ? bill.category === activeCategory : true);
 	}
 
 	const filterCategory = category => {
