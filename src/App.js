@@ -72,10 +72,10 @@ function App() {
 						<NavBar categories={categories} addCategory={showAddCategory} />
 						<div className="container flex">
 							<div className="w-1/2">
-								<BillsTable bills={bills} addBill={showAddBill} removeBill={removeBill}/>
+								<BillsTable bills={bills} addBill={showAddBill} removeBill={removeBill} />
 							</div>
 							<div className="w-1/2">
-								<Chart />
+								<Chart bills={bills} />
 							</div>
 						</div>
 					</div>
