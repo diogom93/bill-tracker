@@ -59,11 +59,11 @@ function App() {
 					:
 					<div>
 						<NavBar categories={categories} addCategory={showAddCategory} />
-						<div className="container">
-							<div className="box">
+						<div className="container flex">
+							<div className="w-1/2">
 								<BillsTable />
 							</div>
-							<div className="box">
+							<div className="w-1/2">
 								<Chart />
 							</div>
 						</div>
