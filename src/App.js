@@ -10,7 +10,7 @@ import NavBar from './components/NavBar';
 
 function App() {
 	const [shouldShowAddCategory, setShouldShowAddCategory] = useState(false);
-	const [shouldShowAddBill, setShouldShowAddBill] = useState(true);
+	const [shouldShowAddBill, setShouldShowAddBill] = useState(false);
 	const [categories, setCategories] = useState([]);
 	const [bills, setBills] = useState([]);
 
@@ -29,8 +29,19 @@ function App() {
 		localStorage.setItem('bills', JSON.stringify(billsAux));
 	}
 
+	const removeBill = index => {
+		const billsAux = [...bills];
+		billsAux.splice(index, 1);
+		setBills(billsAux);
+		localStorage.setItem('bills', JSON.stringify(billsAux));
+	}
+
 	const showAddCategory = () => {
 		setShouldShowAddCategory(true);
+	}
+
+	const showAddBill = () => {
+		setShouldShowAddBill(true);
 	}
 
 	useEffect(() => {
@@ -61,7 +72,7 @@ function App() {
 						<NavBar categories={categories} addCategory={showAddCategory} />
 						<div className="container flex">
 							<div className="w-1/2">
-								<BillsTable />
+								<BillsTable bills={bills} addBill={showAddBill} removeBill={removeBill}/>
 							</div>
 							<div className="w-1/2">
 								<Chart />
